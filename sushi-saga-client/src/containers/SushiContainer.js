@@ -1,16 +1,28 @@
 import React, { Fragment } from 'react'
 import MoreButton from '../components/MoreButton'
+import Sushi from '../components/Sushi'
 
-const SushiContainer = (props) => {
+const SushiContainer = ({eatSushi,platter,nextFour,eaten}) => {
+
   return (
     <Fragment>
       <div className="belt">
         {
-          /* 
-             Render Sushi components here!
-          */
+          platter.map(sushi => {
+
+              //check if current sushi inside the app state eatenSushis
+              if(eaten.includes(sushi.id)){
+                  return (<Sushi sushi={sushi} eatSushi={eatSushi} ate={true} />)
+
+              }
+              else{
+                  return (<Sushi sushi={sushi} eatSushi={eatSushi} ate={false} />)
+
+              }
+
+          })
         }
-        <MoreButton />
+        <MoreButton nextFour={nextFour}/>
       </div>
     </Fragment>
   )
